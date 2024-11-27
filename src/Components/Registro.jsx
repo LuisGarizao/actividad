@@ -3,8 +3,6 @@ import { ARRAY_RESERVAS } from "./Lista-Reservas";
 import { Reservacion } from "./Reservacion";
 
 export const Registro = ({ agregarReserva, reservas }) => {
-	// const [arrReserva] = useState(ARRAY_RESERVAS)
-
 	const [Nombre, setNombre] = useState("");
 	const [Apellido, setApellido] = useState("");
 	const [Documento, setDocumento] = useState("");
@@ -13,7 +11,7 @@ export const Registro = ({ agregarReserva, reservas }) => {
 
 	const manejarSubmit = (e) => {
 		e.preventDefault();
-        const nuevoCod = reservas[reservas.length - 1].CodigoReserva + 1;
+		const nuevoCod = reservas[reservas.length - 1].CodigoReserva + 1;
 
 		const nuevaReserva = new Reservacion(
 			nuevoCod,
@@ -29,21 +27,13 @@ export const Registro = ({ agregarReserva, reservas }) => {
 		setDocumento("");
 		setHabitacion("");
 		setOcupantes("");
-        
-        console.log(nuevoCod);
-        console.log("Nombre:" + Nombre);
-        console.log("Apellido:" + Apellido);
-        console.log("Doc:" + Documento);
-        console.log("Tipo habitación:" + Habitacion);
-        console.log("Ocupantes:" + Ocupantes);
-        
 	};
 
 	return (
 		<>
 			<div className="container">
 				<div className="row">
-					<div className="col-lg-8">
+					<div className="col-lg-8" >
 						<h1>Reserva de lugares</h1>
 						<form onSubmit={manejarSubmit}>
 							<div className="row">
@@ -58,6 +48,7 @@ export const Registro = ({ agregarReserva, reservas }) => {
 											setNombre(e.target.value);
 										}}
 										value={Nombre}
+										required
 									/>
 								</div>
 							</div>
@@ -74,6 +65,7 @@ export const Registro = ({ agregarReserva, reservas }) => {
 											setApellido(e.target.value);
 										}}
 										value={Apellido}
+										required
 									/>
 								</div>
 							</div>
@@ -90,6 +82,7 @@ export const Registro = ({ agregarReserva, reservas }) => {
 											setDocumento(e.target.value);
 										}}
 										value={Documento}
+										required
 									/>
 								</div>
 							</div>
@@ -107,6 +100,7 @@ export const Registro = ({ agregarReserva, reservas }) => {
 												setHabitacion(e.target.value);
 											}}
 											value={"Regular"}
+											required
 										/>
 										<label
 											className="form-check-label"
@@ -124,6 +118,7 @@ export const Registro = ({ agregarReserva, reservas }) => {
 												setHabitacion(e.target.value);
 											}}
 											value={"Premium"}
+											required
 										/>
 										<label
 											className="form-check-label"
@@ -143,7 +138,8 @@ export const Registro = ({ agregarReserva, reservas }) => {
 										onChange={(e) => {
 											setOcupantes(e.target.value);
 										}}
-										value={Ocupantes}>
+										value={Ocupantes}
+										required>
 										<option selected></option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -154,48 +150,15 @@ export const Registro = ({ agregarReserva, reservas }) => {
 							</div>
 
 							<button
-                                type="submit"
-								className="btn btn-primary mt-3"
-								// onClick={() => {
-								// 	// preventDefault()
-								// 	const nuevoCod =
-								// 		arrReserva[arrReserva.length - 1]
-								// 			.CodigoReserva + 1;
-								// 	arrReserva.push(
-								// 		new Reservacion(
-								// 			nuevoCod,
-								// 			Nombre,
-								// 			Apellido,
-								// 			Documento,
-								// 			Habitacion,
-								// 			Ocupantes
-								// 		)
-								// 	);
-
-								// 	console.log(nuevoCod);
-
-								// 	console.log("Nombre:" + Nombre);
-								// 	console.log("Apellido:" + Apellido);
-								// 	console.log("Doc:" + Documento);
-								// 	console.log(
-								// 		"Tipo habitación:" + Habitacion
-								// 	);
-								// 	console.log("Ocupantes:" + Ocupantes);
-								// }}
-                                >
+								type="submit"
+								className="btn btn-primary mt-3">
 								Confirmar
 							</button>
 						</form>
 					</div>
 
 					<div className="col-md-4">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing
-							elit. Enim consequatur delectus consectetur, amet
-							dicta voluptatem, quis eos ipsam itaque eum error
-							laboriosam officiis veniam alias minima soluta
-							dignissimos deserunt vel?
-						</p>
+						<img src="" alt="" />
 					</div>
 				</div>
 			</div>
