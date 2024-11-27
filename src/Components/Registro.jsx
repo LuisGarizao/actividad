@@ -2,15 +2,42 @@ import React, { useState } from "react";
 import { ARRAY_RESERVAS } from "./Lista-Reservas";
 import { Reservacion } from "./Reservacion";
 
-export const Registro = () => {
+export const Registro = ({ agregarReserva, reservas }) => {
+	// const [arrReserva] = useState(ARRAY_RESERVAS)
 
-    const [arrReserva] = useState(ARRAY_RESERVAS)
+	const [Nombre, setNombre] = useState("");
+	const [Apellido, setApellido] = useState("");
+	const [Documento, setDocumento] = useState("");
+	const [Habitacion, setHabitacion] = useState("");
+	const [Ocupantes, setOcupantes] = useState("");
 
-    const [Nombre,setNombre] = useState("")
-    const [Apellido,setApellido] = useState("")
-    const [Documento,setDocumento] = useState("")
-    const [Habitacion,setHabitacion] = useState("")
-    const [Ocupantes,setOcupantes] = useState("")
+	const manejarSubmit = (e) => {
+		e.preventDefault();
+        const nuevoCod = reservas[reservas.length - 1].CodigoReserva + 1;
+
+		const nuevaReserva = new Reservacion(
+			nuevoCod,
+			Nombre,
+			Apellido,
+			Documento,
+			Habitacion,
+			Ocupantes
+		);
+		agregarReserva(nuevaReserva);
+		setNombre("");
+		setApellido("");
+		setDocumento("");
+		setHabitacion("");
+		setOcupantes("");
+        
+        console.log(nuevoCod);
+        console.log("Nombre:" + Nombre);
+        console.log("Apellido:" + Apellido);
+        console.log("Doc:" + Documento);
+        console.log("Tipo habitación:" + Habitacion);
+        console.log("Ocupantes:" + Ocupantes);
+        
+	};
 
 	return (
 		<>
@@ -18,7 +45,7 @@ export const Registro = () => {
 				<div className="row">
 					<div className="col-lg-8">
 						<h1>Reserva de lugares</h1>
-						<form>
+						<form onSubmit={manejarSubmit}>
 							<div className="row">
 								<div className="col-sm-8 ">
 									<label for="" className="form-label mt-3">
@@ -27,8 +54,10 @@ export const Registro = () => {
 									<input
 										type="text"
 										className="form-control col-sm-6 rounded-1"
-                                        onChange={(e)=>{setNombre(e.target.value)}}
-                                        value={Nombre}
+										onChange={(e) => {
+											setNombre(e.target.value);
+										}}
+										value={Nombre}
 									/>
 								</div>
 							</div>
@@ -41,8 +70,10 @@ export const Registro = () => {
 									<input
 										type="text"
 										className="rounded-1 form-control"
-                                        onChange={(e)=>{setApellido(e.target.value)}}
-                                        value={Apellido}
+										onChange={(e) => {
+											setApellido(e.target.value);
+										}}
+										value={Apellido}
 									/>
 								</div>
 							</div>
@@ -55,8 +86,10 @@ export const Registro = () => {
 									<input
 										type="text"
 										className="rounded-1 form-control"
-                                        onChange={(e)=>{setDocumento(e.target.value)}}
-                                        value={Documento}
+										onChange={(e) => {
+											setDocumento(e.target.value);
+										}}
+										value={Documento}
 									/>
 								</div>
 							</div>
@@ -70,8 +103,10 @@ export const Registro = () => {
 											type="radio"
 											name="flexRadioDefault"
 											id="flexRadioDefault1"
-                                            onChange={(e)=>{setHabitacion(e.target.value)}}
-                                            value={"Regular"}
+											onChange={(e) => {
+												setHabitacion(e.target.value);
+											}}
+											value={"Regular"}
 										/>
 										<label
 											className="form-check-label"
@@ -85,8 +120,10 @@ export const Registro = () => {
 											type="radio"
 											name="flexRadioDefault"
 											id="flexRadioDefault2"
-                                            onChange={(e)=>{setHabitacion(e.target.value)}}
-                                            value={"Premium"}
+											onChange={(e) => {
+												setHabitacion(e.target.value);
+											}}
+											value={"Premium"}
 										/>
 										<label
 											className="form-check-label"
@@ -103,8 +140,10 @@ export const Registro = () => {
 									<select
 										className="form-select"
 										aria-label="Default select example"
-                                        onChange={(e)=>{setOcupantes(e.target.value)}}
-                                        value={Ocupantes}>
+										onChange={(e) => {
+											setOcupantes(e.target.value);
+										}}
+										value={Ocupantes}>
 										<option selected></option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -113,25 +152,39 @@ export const Registro = () => {
 									</select>
 								</div>
 							</div>
-                            
-                            <button className="btn btn-primary mt-3" onClick={()=>{
 
-                                // preventDefault()
-                                const nuevoCod=arrReserva[arrReserva.length - 1].CodigoReserva + 1
-                                arrReserva.push(new Reservacion(nuevoCod,Nombre,Apellido,Documento,Habitacion,Ocupantes));
-                                
-                                console.log(nuevoCod);
-                                
-                                console.log("Nombre:"+Nombre);
-                                console.log("Apellido:"+Apellido);
-                                console.log("Doc:"+Documento);
-                                console.log("Tipo habitación:"+Habitacion);
-                                console.log("Ocupantes:"+Ocupantes);
-                                
-                            }}>
-                                Confirmar
-                            </button>
+							<button
+                                type="submit"
+								className="btn btn-primary mt-3"
+								// onClick={() => {
+								// 	// preventDefault()
+								// 	const nuevoCod =
+								// 		arrReserva[arrReserva.length - 1]
+								// 			.CodigoReserva + 1;
+								// 	arrReserva.push(
+								// 		new Reservacion(
+								// 			nuevoCod,
+								// 			Nombre,
+								// 			Apellido,
+								// 			Documento,
+								// 			Habitacion,
+								// 			Ocupantes
+								// 		)
+								// 	);
 
+								// 	console.log(nuevoCod);
+
+								// 	console.log("Nombre:" + Nombre);
+								// 	console.log("Apellido:" + Apellido);
+								// 	console.log("Doc:" + Documento);
+								// 	console.log(
+								// 		"Tipo habitación:" + Habitacion
+								// 	);
+								// 	console.log("Ocupantes:" + Ocupantes);
+								// }}
+                                >
+								Confirmar
+							</button>
 						</form>
 					</div>
 
@@ -150,5 +203,4 @@ export const Registro = () => {
 	);
 };
 
-
-export default Registro
+export default Registro;

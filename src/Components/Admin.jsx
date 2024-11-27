@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Reservacion } from "./Reservacion";
 import { ARRAY_RESERVAS } from "./Lista-Reservas";
 
-export const Admin = () => {
-
-    const [arrReservas] = useState(ARRAY_RESERVAS)
+export const Admin = ({reservas}) => {
 
 	return (
 		<>
@@ -24,7 +22,7 @@ export const Admin = () => {
 								</tr>
 							</thead>
 							<tbody>
-                                {arrReservas.map((reserva)=>(
+                                {reservas.map((reserva)=>(
                                     <tr key={reserva.CodigoReserva} className="align-middle">
                                         <td>{reserva.CodigoReserva}</td>
                                         <td>{reserva.Nombre}</td>
